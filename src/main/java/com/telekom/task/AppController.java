@@ -47,8 +47,9 @@ public class AppController {
     Map<String, Object> csrInfo(PKCS10CertificationRequest csr) {
 
         Map<String, Object> response = new HashMap<>();
-        response.put("Subject", csr.getSubject().toString());
-        response.put("Attributes", Arrays.toString(csr.getAttributes()));
+        response.put("Subject", this.csrParser.getSubjectName(csr));
+        response.put("PKA", this.csrParser.getPKAlg(csr));
+        response.put("Attributes", this.csrParser.getAttributes(csr));
         return response;
     }
 }

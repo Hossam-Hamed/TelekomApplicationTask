@@ -52,7 +52,7 @@ public class CSRParser {
 
     public String getAttributes(PKCS10CertificationRequest csr) {
         Attribute[] attributes = csr.getAttributes();
-        //FIXME find SAN in attributes
+        //TODO find SAN in attributes
         return Arrays.toString(attributes);
     }
 
