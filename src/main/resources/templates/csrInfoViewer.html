@@ -6,38 +6,13 @@
 </head>
 <body>
 <div>
-<!--<table>-->
-<!--    <tr th:each="var : ${#vars.getVariableNames()}">-->
-<!--        <td th:text="${var}"></td>-->
-<!--        <td th:text="${#vars.getVariable(var)}"></td>-->
-<!--    </tr>-->
-<!--</table>-->
+<table>
+    <tr th:each="var : ${csrInfo}">
+        <td th:text="${var.key}"></td>
+        <td th:text="${var.value}"></td>
+    </tr>
+</table>
 </div>
-
-<div>
-    CSR Subject Information:
-    <span th:if="${Subject}">
-      <br>
-      <span th:text="${Subject}"></span>
-  </span>
-</div>
-<div>
-    Public Key Algorithm:
-    <span th:if="${PKA}">
-      <br>
-      <span th:text="${PKA}"></span>
-  </span>
-
-</div>
-<div>
-    CSR Attributes Information:
-    <span th:if="${Attributes}">
-      <br>
-      <span th:text="${Attributes}"></span>
-  </span>
-
-</div>
-
 <div>
     <span><a href="/">Parse a new CSR</a></span>
 </div>

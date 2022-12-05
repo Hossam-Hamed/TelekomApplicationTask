@@ -40,7 +40,7 @@ public class AppController {
 
     String responseHandler(Model model, PKCS10CertificationRequest csr) {
 
-        model.addAllAttributes(csrInfo(csr));
+        model.addAttribute("csrInfo", csrInfo(csr));
         return "csrInfoViewer";
     }
 
@@ -48,7 +48,7 @@ public class AppController {
 
         Map<String, Object> response = new HashMap<>();
         response.put("Subject", this.csrParser.getSubjectName(csr));
-        response.put("PKA", this.csrParser.getPKAlg(csr));
+        response.put("Public Key Algorithm", this.csrParser.getPKAlg(csr));
         response.put("Attributes", this.csrParser.getAttributes(csr));
         return response;
     }
