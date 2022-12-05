@@ -6,15 +6,26 @@ plugins {
 
 group = 'com.Telekom'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '18'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    //spring boot
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    //security library
+    implementation group: 'org.bouncycastle', name: 'bcpkix-jdk18on', version: '1.72'
+    //logging library
+    implementation 'org.apache.logging.log4j:log4j-api:2.19.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.19.0'
+
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+
 }
 
 tasks.named('test') {

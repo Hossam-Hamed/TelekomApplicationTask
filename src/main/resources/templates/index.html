@@ -1,10 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>CSR Parser</title>
 </head>
 <body>
-$END$
+<div>
+    <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="return fileCheck()">
+        <input id="fileInput" type="file" name="file">
+        <input type="submit" value="Upload CSR File"></input>
+    </form>
+</div>
+<br>
+<div>
+    <form action="/submitCSR" method="post" onsubmit="return inputCheck()">
+        <p>
+            CSR in PEM Format : <input id="textInput" type="text" name="csr"/>
+            <input type="submit" value="Submit"/>
+        </p>
+    </form>
+</div>
+
+<script>
+    function inputCheck() {
+        if (document.getElementById("textInput").value == 0) {
+            alert("Enter a CSR!");
+            return false;
+        }
+        return true;
+    }
+
+    function fileCheck() {
+        if (document.getElementById("fileInput").value == 0) {
+            alert("Select CSR file!");
+            return false;
+        }
+        return true;
+    }
+</script>
+
 </body>
 </html>
