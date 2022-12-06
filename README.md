@@ -21,7 +21,7 @@ Develop a PKCS#10 Certificate Signing Request (CSR) parser that accepts a CSR, p
 
 ## Deliverables
 * Source code
-* JAR executable
+* [JAR executable](./build/libs)
 
 ## Need To Know
 * Gradle is the build tool of choice
