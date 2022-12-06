@@ -1,6 +1,8 @@
 package com.telekom.task;
 
 import org.bouncycastle.pkcs.PKCS10CertificationRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,10 +19,13 @@ import java.util.Map;
 @Controller
 public class AppController {
 
+    Logger logger = LoggerFactory.getLogger(AppController.class);
+
     CSRParser csrParser = new CSRParser();
 
     @RequestMapping("/")
     public String landingPage(Model model) {
+        logger.info("Request received for / ");
         return "index";
     }
 
@@ -34,6 +39,7 @@ public class AppController {
      */
     @PostMapping("/upload")
     public String fileupload(Model model, @RequestParam("file") MultipartFile multipartFile) throws IOException {
+        logger.info("Request received for /upload");
         PKCS10CertificationRequest csr = csrParser.parseCSRFromFile(multipartFile);
         return responseHandler(model, csr);
     }
@@ -48,12 +54,12 @@ public class AppController {
 
     @PostMapping("/submitCSR")
     public String formSubmit(Model model, @ModelAttribute("csr") String csrString) throws IOException {
-
+        logger.info("Request received for \"/submitCSR\"");
         //remove blanks within CSR String which cause parsing errors
         csrString = csrString.substring(0, 35) + "\n" + csrString.substring(36, csrString.length() - 34).replaceAll(" ", "") + "\n" + csrString.substring(csrString.length() - 33);
+        logger.info("Received CSR:\n"+ csrString);
         PKCS10CertificationRequest csr = csrParser.parseCSRFromString(csrString);
         return responseHandler(model, csr);
-
     }
 
     /***
@@ -63,9 +69,9 @@ public class AppController {
      * @return
      */
     String responseHandler(Model model, PKCS10CertificationRequest csr) {
-
         //Add information map to model
         model.addAttribute("csrInfo", csrInfo(csr));
+        logger.info("Response sent with CSR info.");
         return "csrInfoViewer";
     }
 
